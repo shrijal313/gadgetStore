@@ -1,4 +1,10 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:day2/core/constants.dart';
+import 'package:day2/core/widgets/point_indicator.dart';
+import 'package:day2/pages/product_detail/widgets/product_detail_tab.dart';
+import 'package:day2/pages/product_detail/widgets/store_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -6,6 +12,7 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -75,87 +82,72 @@ class ProductDetail extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 400,
+                  height: 300,
                   width: double.maxFinite,
-                  color: Colors.red,
-                ),
-                Card(
-                  color: Color(0xffedeef1),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  elevation: 2,
-                  shadowColor: Colors.grey[100],
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          color: Colors.grey,
+                          child: Image.asset(
+                            "assets/images/asus2.jpg",
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                          flex: 1,
                           child: Container(
-                            height: 60,
-                            width: 60,
-                            color: primaryColorK,
-                            padding: EdgeInsets.all(2),
-                            child: Image.asset(
-                              "assets/images/asuslogo.png",
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Asus Official Store",
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                color: primaryColorK,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              )),
-                            ),
-                            SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "view store",
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                color: primaryColorK,
-                                fontWeight: FontWeight.w300,
-                                fontSize: 12,
-                              )),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        Container(
-                          width: 40,
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
-                                padding: EdgeInsets.all(0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: primaryColorK,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                            color: Colors.blue,
+                          ))
+                    ],
                   ),
                 ),
+                StoreCard(),
                 SizedBox(
                   height: 20,
                 ),
+                ProductDetailTab(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 10),
+                  child: Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Price"),
+                          Text(
+                            "\$2338.1",
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              color: primaryColorK,
+                              fontSize: 28,
+                            )),
+                          ),
+                        ],
+                      ),
+                      Spacer(),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: primaryColorK,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10,
+                                ),
+                              ),
+                              elevation: 0,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 45)),
+                          onPressed: () {},
+                          child: Text(
+                            "Add to Cart",
+                          ))
+                    ],
+                  ),
+                )
               ],
             ),
           ),
